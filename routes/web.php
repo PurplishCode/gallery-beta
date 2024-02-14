@@ -15,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome', [
-        "title" => "GD | Welcome Page" 
+        "title" => "GD | Welcome Page"
     ]);
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::middleware('guest')->group(function () {
+
+    Route::get('/login', function () {
+        return view('auth.login', [
+            "title" => "GD | Login"
+        ]);
+    })->name("login.display");
+
+
+    Route::get('/register', function () {
+        return view('auth.register', [
+            "title" => "GD | Registration"
+        ]);
+    })->name("register.display");
 });
