@@ -33,13 +33,13 @@ class Foto extends Model
 
     public function likeFoto()
     {
-        $this->hasMany(LikeFoto::class, "userID");
+        $this->hasMany(LikeFoto::class, "fotoID");
     }
     
     
     public function komentarFoto()
     {
-        $this->hasMany(KomentarFoto::class, "userID");
+        $this->hasMany(KomentarFoto::class, "fotoID");
     }
     
         

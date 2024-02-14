@@ -25,8 +25,8 @@ class Album extends Model
     }
 
 
-    public function album()
+    public function foto()
     {
-        $this->hasMany(Album::class, "fotoID");
+        $this->hasMany(Foto::class, "albumID");
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Foto;
 use App\Http\Requests\StoreFotoRequest;
 use App\Http\Requests\UpdateFotoRequest;
+use Illuminate\Support\Facades\DB;
 
 class FotoController extends Controller
 {
@@ -35,9 +36,10 @@ class FotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Foto $foto)
+    public function show()
     {
-        //
+
+
     }
 
     /**

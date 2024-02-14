@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
-use App\Http\Requests\StoreAlbumRequest;
-use App\Http\Requests\UpdateAlbumRequest;
+use App\Models\Foto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AlbumController extends Controller
+class ShiftController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $foto = Foto::all();
+        return view("pages.users.index", [
+            "foto" => $foto,
+            "title" => "GD | Home"
+        ]);
     }
 
     /**
@@ -28,7 +31,7 @@ class AlbumController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAlbumRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,18 +39,16 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(string $id)
     {
-        
-        return view('pages.album.index', [
-            "title" => "GD | Album"
-        ]);
+        // To-DO EXPLORE ALL PHOTO from Respective USERS.
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Album $album)
+    public function edit(string $id)
     {
         //
     }
@@ -55,7 +56,7 @@ class AlbumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAlbumRequest $request, Album $album)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -63,7 +64,7 @@ class AlbumController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Album $album)
+    public function destroy(string $id)
     {
         //
     }

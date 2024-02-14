@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ShiftController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +39,12 @@ Route::middleware('guest')->group(function () {
             "title" => "GD | Registration"
         ]);
     })->name("register.display");
+});
+
+
+Route::middleware('auth')->group(function()
+{
+    Route::get('/home/album', [AlbumController::class, 'show'])->name("album.display");
+    Route::get('/admin/home', [AlbumController::class, 'show'])->name("album.display");
+    Route::get("/home", [ShiftController::class, "index"])->name("home.display");
 });

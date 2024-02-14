@@ -12,7 +12,7 @@
 
 <body>
 
-    <header class="bg-dark header fixed-top d-flex align-items-center" id="header">
+    <header class="header fixed-top d-flex align-items-center" id="header">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-center" style="text-decoration: none;">
                 <img src="{{ asset('assets/chibi.jpg') }}" alt="Gallea Logo" style="width:50px;">
@@ -35,7 +35,7 @@
                         </ul>
                     </a>
                 </li>
-            </ul>
+            </ul>   
         </nav>
         @else
         <nav class="header-nav ms-auto">
@@ -43,8 +43,8 @@
                 <div class="px-3 py-2 mb-1">
                     
                     <div class="container d-flex flex-wrap justify-content-center">
-                        <a href="{{ route("login.display") }}" class="btn text-white btn-sm me-2" style="text-decoration:none; ackground-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(20,100,214,.4) 45%,rgba(255,255,255,.08) 15%),linear-gradient(258deg,rgba(87,238,255,.1),rgba(77,8,211,.2));background-color: rgba(74,148,214,.9);">LOGIN</a>
-                        <a href="{{ route("register.display") }}" class="btn text-white btn-sm" style="text-decoration:none; ackground-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(20,100,214,.4) 45%,rgba(255,255,255,.08) 15%),linear-gradient(258deg,rgba(87,238,255,.1),rgba(77,8,211,.2));background-color: rgba(74,148,214,.9);">REGISTER</a>
+                        <a href="{{ route("login.display") }}" class="btn text-white btn-sm me-2" style="text-decoration:none; background-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(190, 46, 247, 0.4) 45%,rgba(255, 255, 255, 0.08) 15%),linear-gradient(258deg,rgba(132, 87, 255, 0.1),rgba(77,8,211,.2));background-color: rgba(88, 74, 214, 0.9);">LOGIN</a>
+                        <a href="{{ route("register.display") }}" class="btn text-white btn-sm" style="text-decoration:none; background-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(190, 46, 247, 0.4) 45%,rgba(255, 255, 255, 0.08) 15%),linear-gradient(258deg,rgba(132, 87, 255, 0.1),rgba(77,8,211,.2));background-color: rgba(88, 74, 214, 0.9);font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">REGISTER</a>
                     
                     </div>
                 </div>

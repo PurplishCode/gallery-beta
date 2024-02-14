@@ -23,7 +23,7 @@ font-family:cursive;opacity:0.8">
                     </div>
                 </blockquote>
                 <a href="" class="btn  btn-sm fw-bold text-white"
-                    style="font-family:Calibri;width:100px;background-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(20,100,214,.4) 45%,rgba(255,255,255,.08) 15%),linear-gradient(258deg,rgba(87,238,255,.1),rgba(77,8,211,.2));background-color: rgba(74,148,214,.9);">BEGIN</a>
+                    style="font-family:Calibri;width:100px;background-color:purple;border-radius:14px;background-image: linear-gradient(-155deg,rgba(190, 46, 247, 0.4) 45%,rgba(255, 255, 255, 0.08) 15%),linear-gradient(258deg,rgba(132, 87, 255, 0.1),rgba(77,8,211,.2));background-color: rgba(88, 74, 214, 0.9);">BEGIN</a>
                 <figure class="text-end mt-4">
                     <blockquote>"To the magnificent land!"</blockquote>
                     <figcaption class="blockquoute-footer">
