@@ -17,29 +17,30 @@ class Foto extends Model
 "deskripsiFoto",
 "lokasiFile",
 "tanggalUnggah",
+"userID",
 "albumID"
     ];
 
     public function users()
     {
-        $this->belongsTo(User::class, "userID");
+       return $this->belongsTo(User::class, "userID");
     }
 
     public function album()
     {
-        $this->belongsTo(Album::class, "albumID");
+        return $this->belongsTo(Album::class, "albumID");
     }
 
 
     public function likeFoto()
     {
-        $this->hasMany(LikeFoto::class, "fotoID");
+       return  $this->hasMany(LikeFoto::class, "fotoID");
     }
     
     
     public function komentarFoto()
     {
-        $this->hasMany(KomentarFoto::class, "fotoID");
+        return $this->hasMany(KomentarFoto::class, "fotoID");
     }
     
         

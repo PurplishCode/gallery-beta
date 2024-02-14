@@ -36,12 +36,16 @@ class ShiftController extends Controller
 $credentials = $request->only("email","password");
 
 if(Auth::attempt($credentials)) {
-Log::info("Login is succesful!");
+Log::info("Login is succesful!", session()->all());
     return redirect()->route('user.home');
 } else {
     Log::info("Failed to login.");
     return redirect()->back();
 }
+        } else {
+        Log::info("Sorry. This account doesn't exists.");
+            return redirect()->back();
+        
         }
     }
 

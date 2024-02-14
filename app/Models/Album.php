@@ -21,12 +21,12 @@ class Album extends Model
 
     public function users()
     {
-        $this->belongsTo(User::class, "userID");
+        return $this->belongsTo(User::class, "userID");
     }
 
 
     public function foto()
     {
-        $this->hasMany(Foto::class, "albumID");
+        return $this->hasMany(Foto::class, "albumID");
     }
 }

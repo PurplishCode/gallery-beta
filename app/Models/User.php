@@ -31,18 +31,18 @@ class User extends Authenticatable
 
 public function foto()
 {
-    $this->hasMany(Foto::class, "userID");
+    return $this->hasMany(Foto::class, "userID");
 }
 
 
 public function album()
 {
-    $this->hasMany(Album::class, "userID");
+    return $this->hasMany(Album::class, "userID");
 }
 
 public function likeFoto()
 {
-    $this->hasMany(LikeFoto::class, "userID");
+    return $this->hasMany(LikeFoto::class, "userID");
 }
 
 

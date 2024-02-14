@@ -19,7 +19,23 @@
                 <p class="lead text-white" style="font-size: 18px;">"Beautiful Crystal underlays."</p>
             </blockquote>
 
-            <form action="{{  }}"></form>
+            <form action="{{ route('user.login') }}" method="POST">
+            @csrf
+            @method('POST')
+            <div class="d-flex justify-content-center pt-3">
+                <input type="email" class="form-control form-floating"
+                    style="width:270px;border:3px solid purple;" placeholder="Email" name="email">
+        <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="d-flex justify-content-center pt-5">
+                <input type="password" class="form-control form-floating"
+                    style="width:270px;border:3px solid purple;" placeholder="Password" name="password">
+            </div>
+            <div class="d-flex justify-content-center pt-5">
+                <button class="btn btn-success btn-md" type="submit
+                " style="width: 150px;">SUBMIT</button>
+                </div>
+            </form>
         </div>
     </section>
 </body>

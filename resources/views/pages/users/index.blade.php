@@ -28,7 +28,7 @@
             </div>
             <div class="modal-body">
                
-                <form action="{{ route('foto.create') }}" enctype="multipart/form-data" class="form-group pb-4">
+                <form action="{{ route('foto.create') }}" enctype="multipart/form-data" class="form-group pb-4" method="POST">
                     @csrf
                     @method('POST')
                    
@@ -40,11 +40,15 @@
                    
                     <div class="pt-4"><select class="form-select" name="albumID">
                         @foreach($album as $dataAlbum)
-                        <option value="{{ $dataAlbum->albumID }}"></option>{{ $dataAlbum->namaAlbum }}
+                        <option value="{{ $dataAlbum->albumID }}">{{ $dataAlbum->namaAlbum }}</option>
                         @endforeach
 
                     </select>
  
+                    </div>
+
+                    <div class="pt-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">UPLOAD</button>
                     </div>
                 </form>
             </div>

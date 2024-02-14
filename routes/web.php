@@ -6,6 +6,7 @@ use App\Http\Controllers\FotoController;
 use App\Http\Controllers\ShiftController;
 use App\Models\Foto;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,5 @@ Route::post('foto.create', [FotoController::class, "store"])->name("foto.create"
 Route::post('album.create', [AlbumController::class, "store"])->name("album.create");
 
 Route::post('logout', [ShiftController::class, 'logout'])->name('logout');
+
+Route::post('user.login', [ShiftController::class, "login"])->name('user.login');
