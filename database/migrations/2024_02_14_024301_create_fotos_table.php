@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("judulFoto")->max(20);
             $table->string("deskripsiFoto");
             $table->date("tanggalUnggah");
-            $table->string("slokasiFile");
+            $table->string("lokasiFile");
             $table->unsignedBigInteger("userID");
             $table->unsignedBigInteger("albumID");
             $table->timestamps();

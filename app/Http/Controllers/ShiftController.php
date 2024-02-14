@@ -28,6 +28,23 @@ class ShiftController extends Controller
         //
     }
 
+    public function login(Request $request)
+    {
+        $checkSource = User::where("email", $request->email)->first();
+
+        if($checkSource && Hash::check($request->password, $checkSource->password)) {
+$credentials = $request->only("email","password");
+
+if(Auth::attempt($credentials)) {
+Log::info("Login is succesful!");
+    return redirect()->route('user.home');
+} else {
+    Log::info("Failed to login.");
+    return redirect()->back();
+}
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -103,5 +120,15 @@ return redirect()->route("user.home");
     public function destroy(string $id)
     {
         //
+    }
+
+    public function logout()
+    {
+        Log::info("Session currently:", session()->all());
+        session()->flush();
+        Auth::logout();
+    
+    Log::info("Session is wiped.");
+    return redirect()->route("login.display");
     }
 }

@@ -45,7 +45,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function()
 {
-    Route::get('/home/album', [AlbumController::class, 'show'])->name("user.album");
+    Route::get('/home/album', [AlbumController::class, 'index'])->name("user.album");
     Route::get('/admin/home', [AdminController::class, 'index'])->name("admin.home");
     Route::get("/home", [FotoController::class, "index"])->name("user.home");
 
@@ -53,3 +53,9 @@ Route::middleware('auth')->group(function()
 });
 
 Route::post('user.register', [ShiftController::class, "store"])->name("user.register");
+
+Route::post('foto.create', [FotoController::class, "store"])->name("foto.create");
+
+Route::post('album.create', [AlbumController::class, "store"])->name("album.create");
+
+Route::post('logout', [ShiftController::class, 'logout'])->name('logout');

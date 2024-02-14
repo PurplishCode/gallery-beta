@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Http\Requests\StoreAlbumRequest;
 use App\Http\Requests\UpdateAlbumRequest;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AlbumController extends Controller
 {
@@ -14,7 +18,14 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+$userID = Auth::id();
+
+        $album = DB::table('album')->where('album.userID', $userID)->join('users', 'users.userID', '=', 'album.userID')->select('album.namaAlbum', 'users.username', 'album.deskripsi')->get();
+
+        return view('pages.album.index', [
+            "title" => "GD | Album",
+            "album" => $album
+        ]);
     }
 
     /**
@@ -28,9 +39,32 @@ class AlbumController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAlbumRequest $request)
+    public function store(HttpRequest $request)
     {
-        //
+        $request->validate([
+            'namaAlbum' => "string|required|max:20",
+            'deskripsi' => "string|required|max:254",
+        ]);
+
+        $user = auth()->user();
+
+        $simpanFile = [
+            'namaAlbum' => $request->namaAlbum,
+            'deskripsi' => $request->deskripsi,
+            'tanggalDibuat' => now(),
+            'userID' => $user->userID,
+
+        ];
+
+        $success = Album::create($simpanFile);
+
+        if ($success) {
+            Log::info("Succesfully created an Album.");
+            return redirect()->back();
+        } else {
+            Log::info("Failed to create an Album.");
+            return redirect()->back();
+        }
     }
 
     /**
@@ -38,10 +72,6 @@ class AlbumController extends Controller
      */
     public function show()
     {
-        
-        return view('pages.album.index', [
-            "title" => "GD | Album"
-        ]);
     }
 
     /**

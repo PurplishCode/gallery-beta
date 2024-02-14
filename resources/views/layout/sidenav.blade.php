@@ -12,7 +12,7 @@
 
 <body>
 
-    <header class="navbar navbar-expand-lg navbar-light fixed-top bg-dark" id="header">
+    <header class="navbar navbar-expand-lg navbar-light bg-dark" id="header">
         <div class="d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-start" style="text-decoration: none;">
 
@@ -22,25 +22,15 @@
                     aria-controls="data" data-bs-target="#data"></i>
             </button>
         </div>
+@if (Auth::check())
+    <nav class="header-nav ms-auto">
+        <div class="d-flex align-items-center">
+        <div class="px-3 py-2 mb-1">
+            <div class="container d-flex flex-wrap justify-content-center text-white fw-bold">PENGGUNA</div>
+        </div>
+        </div>
+    </nav>
 
-        <!-- Sidebar -->
-        @if (Auth::check())
-        <nav class="header-nav ms-auto">
-            <ul class="d-flex align-items-center">
-                <li class="nav-item dropdown pe-3">
-                    <a href="" class="nav-link nav-profile d-flex align-items-center  pe-0" data-bs-toggle="dropdown">
-                        @if (Auth::user())
-                        <img src="{{ asset('assets/avatar-masyarakat.png') }}" alt="Profile" style="rounded-circle">
-                        @endif
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                            <li class="dropdown-header">
-                                <h6>{{ Auth::user()->name }}</h6>
-                            </li>
-                        </ul>
-                    </a>
-                </li>
-            </ul>
-        </nav>
         @else
         <nav class="header-nav ms-auto">
             <div class="d-flex align-items-center">
@@ -56,7 +46,7 @@
                 </div>
             </div>
         </nav>
-        @endif
+ @endif       
 
 
     </header>
@@ -70,10 +60,19 @@
         <div class="offcanvas-body pl-md-0">
             <ul class="navbar-nav text-white">
                 <li class="nav-item">
-                    <a href="{{ route('user.home')}}" class="nav-link p-3" style="border-bottom:1px solid white;">Foto</a>
+                    <a href="{{ route('user.home')}}" class="nav-link p-3 active" style="border-bottom:1px solid white;">Foto</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.home')}}" class="nav-link  p-3" style="border-bottom:1px solid white;">Album</a>
+                    <a href="{{ route('user.album')}}" class="nav-link  p-3" style="border-bottom:1px solid white;">Album</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  p-3" style="border-bottom:1px solid white;">
+                    <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="btn bg-dark">LOGOUT</button>
+                    </form>
+                    </a>
                 </li>
             </ul>
         </div>
