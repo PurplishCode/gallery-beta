@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\FotoController;
 use App\Http\Controllers\ShiftController;
+use App\Models\Foto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+Route::middleware('guest')->group(function () {
+
 Route::get('/', function () {
     return view('welcome', [
         "title" => "GD | Welcome Page"
     ]);
 });
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-Route::middleware('guest')->group(function () {
-
     Route::get('/login', function () {
         return view('auth.login', [
             "title" => "GD | Login"
@@ -44,7 +45,11 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function()
 {
-    Route::get('/home/album', [AlbumController::class, 'show'])->name("album.display");
-    Route::get('/admin/home', [AlbumController::class, 'show'])->name("album.display");
-    Route::get("/home", [ShiftController::class, "index"])->name("home.display");
+    Route::get('/home/album', [AlbumController::class, 'show'])->name("user.album");
+    Route::get('/admin/home', [AdminController::class, 'index'])->name("admin.home");
+    Route::get("/home", [FotoController::class, "index"])->name("user.home");
+
+    Route::get('/admin/album', [AdminController::class, "displayAlbum"])->name("admin.album");
 });
+
+Route::post('user.register', [ShiftController::class, "store"])->name("user.register");

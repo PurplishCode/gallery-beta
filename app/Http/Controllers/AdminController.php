@@ -12,7 +12,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.admin.index', [
+            "title" => "GD | Admin Dashboard"
+        ]);
     }
 
     /**
@@ -66,5 +68,7 @@ class AdminController extends Controller
     public function displayAlbum()
     {
         $album = DB::table("users")->leftJoin("album", "album.albumID", '=', 'users.albumID')->select('users.username', DB::raw('COUNT(album.albumID) as album_count'), 'album.namaAlbum', 'album.deskprisi')->groupBy("users.username")->get();
+
+        return view('pages.admin.dataAlbum');
     }
 }

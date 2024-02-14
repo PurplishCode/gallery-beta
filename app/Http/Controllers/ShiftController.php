@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Foto;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class ShiftController extends Controller
 {
@@ -13,11 +17,7 @@ class ShiftController extends Controller
      */
     public function index()
     {
-        $foto = Foto::all();
-        return view("pages.users.index", [
-            "foto" => $foto,
-            "title" => "GD | Home"
-        ]);
+
     }
 
     /**
@@ -33,7 +33,43 @@ class ShiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+"username" => "string|required|max:30",
+"email" => "email|required|max:20",
+"password" => "string|required|max:16",
+"namaLengkap" => "string|required|max:30",
+"alamat" => "string|required|max:254"
+        ]);
+
+$storeData = [
+'username' => $request->username,
+'email' => $request->email,
+'password' => Hash::make($request->password),
+'namaLengkap' => $request->namaLengkap,
+'alamat' => $request->alamat
+];
+
+$savedData = User::create($storeData);
+
+if($savedData) {
+    $credentials = User::where('email', $request->email)->first();
+
+    if($credentials && Hash::check($request->password, $savedData->password)) {
+        $check = $request->only("email", "password");
+    
+    if(Auth::attempt($check)) {
+Log::info("Session is saved: ",session()->all());
+return redirect()->route("user.home");
+    }
+    } else {
+        return redirect()->route("login.display");
+    }
+} else {
+    Log::info("We failed to create your account.");
+    return redirect()->back();
+}
+
+
     }
 
     /**

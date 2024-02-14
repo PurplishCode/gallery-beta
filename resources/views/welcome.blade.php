@@ -13,7 +13,7 @@
 
     @section('content')
     <main id="main" class="main main-landing">
-        <div class="position-relative overflow-hidden p-5 p-md-5 text-white bg-light bimage" style="background-image: url({{ asset('assets/kay.jpg') }}); position: relative;background-size:cover;background-color:rgba(0,0,0,0.5);
+        <div class="position-relative overflow-hidden p-5 p-md-5 text-white bg-light bimage" style="background-image: url({{ asset('assets/kay1.jpg') }}); position: relative;background-size:cover;background-color:rgba(0,0,0,0.5);
 font-family:cursive;opacity:0.8">
             <div class="p-lg-5 my-5">
                 <h1 class="title fw-400" style="font-family: Sofia;">Gallea</h1>
