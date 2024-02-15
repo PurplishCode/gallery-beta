@@ -20,7 +20,7 @@ class AlbumController extends Controller
     {
 $userID = Auth::id();
 
-        $album = DB::table('album')->where('album.userID', $userID)->join('users', 'users.userID', '=', 'album.userID')->select('album.namaAlbum', 'users.username', 'album.deskripsi')->get();
+        $album = DB::table('album')->where('album.userID', $userID)->join('users', 'users.userID', '=', 'album.userID')->leftJoin('foto', 'foto.albumID', '=', 'album.albumID')->select('album.namaAlbum', 'users.username', 'album.deskripsi', 'album.albumID')->get();
 
         return view('pages.album.index', [
             "title" => "GD | Album",
@@ -70,8 +70,16 @@ $userID = Auth::id();
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($albumID)
     {
+    $album = DB::table('album')->where('album.albumID', $albumID)->join("foto", "foto.albumID", '=', 'album.albumID')->leftJoin('users', "users.userID", '=', 'foto.userID')->select('foto.judulFoto', 'foto.lokasiFile', 'album.namaAlbum', 'foto.deskripsiFoto')->get();
+
+
+return view('pages.album.list', [
+    "title" => "GD | Album List | $albumID",
+    "dataAlbum" => $album   
+]);
+
     }
 
     /**

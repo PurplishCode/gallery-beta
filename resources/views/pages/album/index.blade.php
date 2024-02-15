@@ -36,18 +36,21 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-between">
+        
     @foreach ($album as $dataAlbum)
     <div class="mt-5 p-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card bg-dark text-white" style="width: 18rem;">
             
             <div class="card-body">
                 <h5 class="card-title">{{ $dataAlbum->namaAlbum }}</h5>
                 <p class="card-text">{{ $dataAlbum->deskripsi }}</p>
-
+                <a href="{{ route('album.show', $dataAlbum->albumID) }}" class="btn btn-primary">Show Foto</a>
             </div>
         </div>
     </div>
     @endforeach
+    </div>
     @endsection
 </body>
 

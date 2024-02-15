@@ -56,19 +56,23 @@
     </div>
 
 </div>
-
+<div class="d-flex justify-content-between ">
     @foreach($foto as $dataFoto)
     <div class="mt-5 p-4">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{ asset('img') . '/' . $dataFoto->lokasiFile }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ $dataFoto->judulFoto }}</h5>
                 <p class="card-text">{{ $dataFoto->deskripsiFoto }}</p>
 
+                
+                <div class="card-footer">Associated Album [ {{ $dataFoto->albumID  }} ]</div>                
             </div>
         </div>
     </div>
     @endforeach
+</div>
+   
 
     
 

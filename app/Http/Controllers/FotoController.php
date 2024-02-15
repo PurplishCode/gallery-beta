@@ -19,7 +19,7 @@ class FotoController extends Controller
     {
         $userID = auth()->user()->userID;
 
-       $foto = DB::table('foto')->where("foto.userID", $userID)->join("users", "foto.userID", "=", "users.userID")->select('foto.judulFoto', 'foto.deskripsiFoto', 'foto.lokasiFile')->get();
+       $foto = DB::table('foto')->where("foto.userID", $userID)->join("users", "foto.userID", "=", "users.userID")->leftJoin('album', 'album.albumID', '=', 'foto.albumID')->select('foto.judulFoto', 'foto.deskripsiFoto', 'foto.lokasiFile', 'album.albumID', 'album.namaAlbum')->get();
 
 
 $album = DB::table('album')->where("album.userID", $userID)->join("users", "users.userID", "=", "album.userID")->select("album.albumID", "album.namaAlbum")->get();

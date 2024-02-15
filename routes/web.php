@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function()
     Route::get("/home", [FotoController::class, "index"])->name("user.home");
 
     Route::get('/admin/album', [AdminController::class, "displayAlbum"])->name("admin.album");
+
+    Route::get('/home/album/{albumID}', [AlbumController::class, "show"])->name("album.show");
 });
 
 Route::post('user.register', [ShiftController::class, "store"])->name("user.register");
