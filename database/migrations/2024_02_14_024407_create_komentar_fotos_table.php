@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('komentar_foto', function (Blueprint $table) {
             $table->id("komentarID");
-            $table->unsignedBigInteger("userID");
             $table->unsignedBigInteger("fotoID");
-            
+            $table->unsignedBigInteger("userID");
+            $table->text('isiKomentar');
+            $table->date('tanggalKomentar');
             $table->timestamps();
-       $table->foreign("userID")->references("userID")->on("users");
+
        $table->foreign("fotoID")->references("fotoID")->on("foto");
-          
+       $table->foreign("userID")->references("userID")->on("users");          
     });
     }
 

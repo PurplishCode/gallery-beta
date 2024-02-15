@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('like_foto', function (Blueprint $table) {
             $table->id("likeID");
-            $table->unsignedBigInteger("userID");
             $table->unsignedBigInteger("fotoID");
-            
+            $table->unsignedBigInteger("userID");
+            $table->date("tanggalLike");
             $table->timestamps();
-       $table->foreign("userID")->references("userID")->on("users");
-       $table->foreign("fotoID")->references("fotoID")->on("foto");
+            $table->foreign("fotoID")->references("fotoID")->on("foto");
+            
+            $table->foreign("userID")->references("userID")->on("users");
+
           
         });
     }
