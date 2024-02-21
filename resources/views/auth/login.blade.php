@@ -14,6 +14,12 @@
     <section class="d-flex justify-content-center  align-items-center min-vh-100">
         <div class="card"
             style="width: 500px; height: 460px;background-color:rgba(8, 82, 219, 0.842);border-radius:14px;background-image: linear-gradient(-155deg,rgba(2, 65, 73, 0.74) 45%,rgba(255, 255, 255, 0.08) 15%),linear-gradient(258deg,rgba(132, 87, 255, 0.1),rgba(40, 5, 110, 0.2));">
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+{{ session('errors') }}
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            @endif
             <div class="mt-3 d-flex justify-content-center container "><h2 class="text-white" style="font-family: cursive">LOGIN</h2></div>
             <blockquote class="blockquote d-flex justify-content-center">
                 <p class="lead text-white" style="font-size: 20px;">"Trial and Errors"</p>
@@ -26,7 +32,11 @@
             <label for="email" class="pb-2 fw-bold text-white">
                 Email Address
             </label>
-            <input type="email" class="form-control border text-white" style="width:470px;border-radius:10px;border:solid gray;" placeholder="Your email address..">
+            <input type="email" class="form-control border" style="width:470px;border-radius:10px;border:solid gray;" placeholder="Your email address..">
+
+            @if ($errors->has('email'))
+                <span class="text-danger">{{ $errors->first('email') }}</span>
+            @endif
            </div>
             {{-- <div class="row pt-3">
                 <label for="" class="pb-1">EMAIL</label>
@@ -40,12 +50,19 @@
                 <label for="password" class="pb-2 fw-bold text-white">
                     Password
                 </label>
-                <input type="password" class="form-control border text-white" style="width:470px;border-radius:10px;border:solid gray;" placeholder="Your Password..">
-               </div>
-            <div class="d-flex justify-content-center pt-5">
+                <input type="password" class="form-control border" style="width:470px;border-radius:10px;border:solid gray;" placeholder="Your Password..">
+                @if ($errors->has('password'))
+                <span class="text-danger">{{ $errors->first('password') }}</span>
+            @endif
+
+            </div>
+            
+               <div class="d-flex justify-content-center pt-5">
                 <button class="btn btn-success btn-lg" type="submit
                 " style="width: 300px;">SUBMIT</button>
-                </div>
+                        </div>
+
+        
             </form>
         </div>
     </section>

@@ -64,3 +64,4 @@ Route::post('album.create', [AlbumController::class, "store"])->name("album.crea
 Route::post('logout', [ShiftController::class, 'logout'])->name('logout');
 
 Route::post('user.login', [ShiftController::class, "login"])->name('user.login');
+

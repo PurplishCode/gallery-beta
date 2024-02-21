@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Foto;
 use App\Models\User;
+use Illuminate\Support\MessageBag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session as Session;
 
 class ShiftController extends Controller
 {
@@ -39,13 +41,12 @@ if(Auth::attempt($credentials)) {
 Log::info("Login is succesful!", session()->all());
     return redirect()->route('user.home');
 } else {
-    Log::info("Failed to login.");
-    return redirect()->back();
+ $errors = new MessageBag(["errors" => ["Sorry, your credentials is incorrect."]]);
+    return redirect()->back()->withErrors($errors);
 }
         } else {
-        Log::info("Sorry. This account doesn't exists.");
-            return redirect()->back();
-        
+            $errors = new MessageBag(["errors" => ["Your email/password is incorrect, try again."]]);
+            return redirect("login")->withErrors($errors);
         }
     }
 

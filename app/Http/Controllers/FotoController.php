@@ -50,9 +50,10 @@ $album = DB::table('album')->where("album.userID", $userID)->join("users", "user
             "lokasiFile" => "file"
         ]);
 
+
         $ambilFile = $request->file("lokasiFile");
         $extensiFile = $ambilFile->extension();
-        $namaFile = date("ymdhis") . '.' . $extensiFile;
+        $namaFile = date("ymdhis") . '.' .  $extensiFile;
         $ambilFile->move(public_path('img'), $namaFile);
 
         $user = auth()->user();
